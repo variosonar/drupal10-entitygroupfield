@@ -376,6 +376,9 @@ class EntityGroupFieldWidgetTest extends WebDriverTestBase {
     $this->assertNotEmpty($groups_select->find('named', ['option', 2]));
     $this->assertEmpty($groups_select->find('named', ['option', 3]));
     $this->assertEmpty($groups_select->find('named', ['option', 4]));
+    // Optgroup should not appear becuase only 'A' type is visible.
+    $this->assertEmpty($groups_select->find('named', ['optgroup', $this->groupTypeA->label()]));
+    // Add to group.
     $groups_select->setValue('1');
     $add_group_button = $page->findButton('Add to Group');
     $this->assertNotEmpty($add_group_button);
@@ -506,6 +509,19 @@ class EntityGroupFieldWidgetTest extends WebDriverTestBase {
     // And both opt groups.
     $this->assertNotEmpty($groups_select->find('named', ['optgroup', $this->groupTypeA->label()]));
     $this->assertNotEmpty($groups_select->find('named', ['optgroup', $this->groupTypeB->label()]));
+    // Add 2 groups from Type A.
+    $groups_select->setValue('1');
+    $add_group_button = $page->findButton('Add to Group');
+    $this->assertNotEmpty($add_group_button);
+    $add_group_button->click();
+    $assert_session->waitForElementVisible('css', '#edit-entitygroupfield-wrapper table');
+    $groups_select->setValue('2');
+    $add_group_button = $page->findButton('Add to Group');
+    $this->assertNotEmpty($add_group_button);
+    $add_group_button->click();
+    $assert_session->waitForElementVisible('xpath', '//div[@id="edit-entitygroupfield-wrapper"]//table/tbody/tr/td//div[contains(text(), "group-A2")]');
+    // Optgroup should not be present since only 'B' type groups remaining.
+    $this->assertEmpty($groups_select->find('named', ['optgroup', $this->groupTypeB->label()]));
 
     // @todo: Anything else we should test with both A and B groups that we
     // didn't already cover with articles?
