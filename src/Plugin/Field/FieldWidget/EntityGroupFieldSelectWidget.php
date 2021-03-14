@@ -109,6 +109,12 @@ class EntityGroupFieldSelectWidget extends EntityGroupFieldWidgetBase {
       }
     }
 
+    // Removing group type optgroup if there is only one.
+    if (count($allowed_groups) == 1) {
+      $bundle_groups = reset($allowed_groups);
+      $allowed_groups = $bundle_groups;
+    }
+
     return $allowed_groups;
   }
 
