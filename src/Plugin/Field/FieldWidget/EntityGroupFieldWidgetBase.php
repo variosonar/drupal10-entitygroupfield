@@ -859,12 +859,12 @@ abstract class EntityGroupFieldWidgetBase extends WidgetBase implements Containe
     }
     $local_keys = [$field_name, 'add_more', 'add_relation'];
     $parent_keys = array_merge($parents, $local_keys);
-    $selected_group = NestedArray::getValue($form_state->getValues(), $parent_keys);
-
-    if ($group = \Drupal::entityTypeManager()->getStorage('group')->load($selected_group)) {
-      $group_content_type_id = $group->getGroupType()->getContentPlugin($widget_state['entity_plugin_id'])->getContentTypeConfigId();
-      $widget_state['selected_group'] = $selected_group;
-      $widget_state['selected_bundle'] = $group_content_type_id;
+    if ($selected_group = NestedArray::getValue($form_state->getValues(), $parent_keys)) {
+      if ($group = \Drupal::entityTypeManager()->getStorage('group')->load($selected_group)) {
+        $group_content_type_id = $group->getGroupType()->getContentPlugin($widget_state['entity_plugin_id'])->getContentTypeConfigId();
+        $widget_state['selected_group'] = $selected_group;
+        $widget_state['selected_bundle'] = $group_content_type_id;
+      }
     }
 
     // Clearing relation field.
