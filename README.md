@@ -1,6 +1,6 @@
 # Entity Group Field
 
-TEntity Group Field a computed field that can be configured on any entity types
+Entity Group Field a computed field that can be configured on any entity types
 that are associated with [Groups](https://www.drupal.org/project/group), allowing
 users with sufficient permissions to view group associations directly while
 viewing entities, and to manage group associations while editing entities.
