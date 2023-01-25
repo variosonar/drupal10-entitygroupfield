@@ -9,7 +9,27 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Entity\FieldableEntityInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 
+/**
+ * Implements hook_help().
+ */
+function entitygroupfield_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the entitygroupfield module.
+    case 'help.page.entitygroupfield':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Entity Group Field provides a computed field that
+      can be configured on any entity types that are associated with Groups,
+      allowing users with sufficient permissions to view group associations
+      directly while viewing entities and to manage group associations while
+      editing entities.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
 /**
  * Implements hook_theme().
  */
