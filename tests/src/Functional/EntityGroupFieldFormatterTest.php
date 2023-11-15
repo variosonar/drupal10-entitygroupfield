@@ -80,7 +80,7 @@ class EntityGroupFieldFormatterTest extends BrowserTestBase {
     $this->drupalGet("node/" . $node->id());
     $this->assertSession()->statusCodeEquals(200);
     $this->assertSession()->linkNotExists('group-A1');
-    $this->assertNoText('group-A1');
+    $this->assertSession()->pageTextNotContains('group-A1');
 
     // Now configure the formatter to show the group (as a link) and try again.
     $this->configureViewDisplay([
@@ -109,7 +109,7 @@ class EntityGroupFieldFormatterTest extends BrowserTestBase {
     $this->assertSession()->statusCodeEquals(200);
     // Make sure there's no link, but the label should still be there.
     $this->assertSession()->linkNotExists('group-A1');
-    $this->assertText('group-A1');
+    $this->assertSession()->pageTextContains('group-A1');
 
     // Now try the ID formatter.
     $this->configureViewDisplay([

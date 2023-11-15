@@ -41,7 +41,7 @@ abstract class EntityGroupFieldKernelTestBase extends KernelTestBase {
   protected function setUp(): void {
     parent::setUp();
 
-    $this->installSchema('system', ['sequences', 'key_value_expire']);
+    $this->installSchema('system', ['sequences']);
     $this->installEntitySchema('user');
     $this->installEntitySchema('group');
     $this->installEntitySchema('group_content');
