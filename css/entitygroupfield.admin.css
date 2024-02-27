@@ -49,3 +49,8 @@
 .field--widget-group-selector-widget .dropbutton-action .ajax-progress {
   left: -115px;
 }
+
+.field--widget-group-selector-widget .field-actions,
+.field--widget-group-selector-widget .field-actions > .form-wrapper {
+  display: block;
+}
