@@ -50,7 +50,7 @@
   left: -115px;
 }
 
-.field--widget-group-selector-widget .field-actions,
-.field--widget-group-selector-widget .field-actions > .form-wrapper {
+.field--widget-entitygroupfield-select-widget .field-actions,
+.field--widget-entitygroupfield-select-widget .field-actions > .form-wrapper {
   display: block;
 }
