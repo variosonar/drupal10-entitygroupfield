@@ -41,6 +41,7 @@
   min-width: 80px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  align-self: center;
 }
 .field--widget-group-selector-widget .delta-order {
   padding-right: 10px;
@@ -51,6 +52,9 @@
 }
 
 .field--widget-entitygroupfield-select-widget .field-actions,
-.field--widget-entitygroupfield-select-widget .field-actions > .form-wrapper {
+.field--widget-entitygroupfield-autocomplete-widget .field-actions,
+.field--widget-entitygroupfield-select-widget .field-actions > .form-wrapper,
+.field--widget-entitygroupfield-autocomplete-widget .field-actions > .form-wrapper {
   display: block;
 }
+
