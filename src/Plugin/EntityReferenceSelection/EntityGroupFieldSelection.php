@@ -30,6 +30,20 @@ class EntityGroupFieldSelection extends DefaultSelection {
       $query->condition($entity_type->getKey('id'), $configuration['excluded_groups'], 'NOT IN');
     }
 
+    if (!\Drupal::currentUser()->hasRole('administrator')) {
+      $groups = [];
+      /** @var \Drupal\group\GroupMembershipLoader $grp_membership_service */
+      $grp_membership_service = \Drupal::service('group.membership_loader');
+      $memberships = $grp_membership_service->loadByUser(\Drupal::currentUser());
+      foreach ($memberships as $m) {
+        $group = $m->getGroup();
+        $groups[] = $group->id();
+      }
+      if (!empty($groups)) {
+        $query->condition($entity_type->getKey('id'), $groups, 'IN');
+      }
+    }
+
     return $query;
   }
 
